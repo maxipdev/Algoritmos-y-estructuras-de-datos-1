@@ -29,11 +29,11 @@ public class ABB<T extends Comparable<T>> {
         }
 
         public T valor() {
-            return nodoApuntado;
+            return nodoApuntado.valor;
         }
 
         public void eliminar() {
-            eliminarNodo(nodoApuntado);
+            ABB.this.eliminar(nodoApuntado);
         }
 
     }
@@ -60,6 +60,16 @@ public class ABB<T extends Comparable<T>> {
             this.minimo = anterior;
         } else {
             actualizarMinimos(nodo.izquierda, nodo);
+        }
+    }
+
+        private Nodo buscarNodo(Nodo nodoActual, T elemento) {
+        if (nodoActual.valor.compareTo(elemento) == 0) {
+            return nodoActual;
+        } else if (nodoActual.valor.compareTo(elemento) > 0) {
+            return buscarNodo(nodoActual.izquierda, elemento);
+        } else {
+            return buscarNodo(nodoActual.derecha, elemento);
         }
     }
 
@@ -148,6 +158,11 @@ public class ABB<T extends Comparable<T>> {
         }
     }
 
+    public void eliminar(T elem) {
+        Nodo nodo = buscarNodo(puntero, elem);
+        if (nodo != null) eliminar(nodo);
+    }
+
     public void eliminar(Nodo nodoToBorrar) {
         // sabemos q el elemento q se le pase con el nuevo borrar ya pertenece
         // ya vamos a tener el nodo que queremos borarr
@@ -213,11 +228,11 @@ public class ABB<T extends Comparable<T>> {
             tamaño += 1;
         }
 
-        // Actualizamos mínimo y máximo si era necesario
-        if (maximo != null && maximo.valor.compareTo(elem) == 0) {
+        // // Actualizamos mínimo y máximo si era necesario
+        if (maximo != null && maximo.valor.compareTo(nodoToBorrar.valor) == 0) {
             actualizarMaximos(puntero, null);
         }
-        if (minimo != null && minimo.valor.compareTo(elem) == 0) {
+        if (minimo != null && minimo.valor.compareTo(nodoToBorrar.valor) == 0) {
             actualizarMinimos(puntero, null);
         }
     }
