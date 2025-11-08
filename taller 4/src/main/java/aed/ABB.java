@@ -143,87 +143,81 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void eliminar(T elem) {
-        if (pertenece(elem) == false)
-            return; // en caso de que no pertenezca
+    if (!pertenece(elem)) return;
 
-        Nodo nodoToBorrar = buscarNodo(puntero, elem);
-        Nodo padre = nodoToBorrar.padre;
+    Nodo nodoToBorrar = buscarNodo(puntero, elem);
+    Nodo padre = nodoToBorrar.padre;
 
-        // modifico el tamaño:
-        tamaño -= 1;
+    tamaño -= 1;
 
-        // caso 1: -- > es una hoja
-        if (nodoToBorrar.derecha == null && nodoToBorrar.izquierda == null) {
-            if (padre == null) { // significa que estamos queriendo borrar la raiz
-                puntero = null; // pq estamso en el caso que no tiene ningun hijo
-            } else {
-                if (padre.valor.compareTo(elem) > 0) {
-                    padre.izquierda = null; // le borro el hijo
-                } else if (padre.valor.compareTo(elem) < 0) {
-                    padre.derecha = null;
-                }
-            }
-        }
-
-        // caso 2 --> tiene un hijo derecho
-        else if (nodoToBorrar.derecha != null && nodoToBorrar.izquierda == null) {
-            if (padre == null) { // significa que la raiz tiene un solo hijo y es el derecho
-                puntero = nodoToBorrar.derecha;
-            } else {
-                if (padre.valor.compareTo(elem) > 0) {
-                    padre.izquierda = nodoToBorrar.derecha;
-                } else if (padre.valor.compareTo(elem) < 0) {
-                    padre.derecha = nodoToBorrar.derecha;
-                }
-            }
-        }
-
-        // caso 3 --> tiene un hijo izquierdo
-        else if (nodoToBorrar.derecha == null && nodoToBorrar.izquierda != null) {
-            if (padre == null) { // tiene un solo hijo y el de la izquierda
-                puntero = nodoToBorrar.izquierda;
-            } else {
-                if (padre.valor.compareTo(elem) > 0) {
-                    padre.izquierda = nodoToBorrar.izquierda;
-                } else if (padre.valor.compareTo(elem) < 0) {
-                    padre.derecha = nodoToBorrar.izquierda;
-                }
-            }
-        }
-
-        // caso 4 --> tiene los 2 hijos
-        else {
-            Nodo predecesor = buscarPredecesor(nodoToBorrar.izquierda, null);
-            Nodo padrePredecesor = predecesor.padre;
-
-            nodoToBorrar.valor = predecesor.valor;
-
-            if (padrePredecesor == nodoToBorrar) {
-                if (predecesor.izquierda == null) {
-                    nodoToBorrar.izquierda = null;
-                } else {
-                    nodoToBorrar.izquierda = predecesor.izquierda;
-                    predecesor.izquierda.padre = nodoToBorrar;
-                }
-            } else {
-                if (predecesor.izquierda == null) {
-                    padrePredecesor.derecha = null;
-                } else {
-                    padrePredecesor.derecha = predecesor.izquierda;
-                    predecesor.izquierda.padre = padrePredecesor;
-                }
-            }
-
-        }
-
-        // ver los casos en los que tenemos maximos y minimos:
-        if (maximo.valor.compareTo(elem) == 0) {
-            actualizarMaximos(puntero, null);
-        }
-        if (minimo.valor.compareTo(elem) == 0) {
-            actualizarMinimos(puntero, null);
+    // Caso 1: es una hoja (sin hijos)
+    if (nodoToBorrar.izquierda == null && nodoToBorrar.derecha == null) {
+        if (padre == null) {
+            puntero = null;
+        } else if (padre.izquierda == nodoToBorrar) {
+            padre.izquierda = null;
+        } else {
+            padre.derecha = null;
         }
     }
+
+    // Caso 2: solo tiene hijo derecho
+    else if (nodoToBorrar.izquierda == null) {
+        if (padre == null) {
+            puntero = nodoToBorrar.derecha;
+            puntero.padre = null;
+        } else if (padre.izquierda == nodoToBorrar) {
+            padre.izquierda = nodoToBorrar.derecha;
+            nodoToBorrar.derecha.padre = padre;
+        } else {
+            padre.derecha = nodoToBorrar.derecha;
+            nodoToBorrar.derecha.padre = padre;
+        }
+    }
+
+    // Caso 3: solo tiene hijo izquierdo
+    else if (nodoToBorrar.derecha == null) {
+        if (padre == null) {
+            puntero = nodoToBorrar.izquierda;
+            puntero.padre = null;
+        } else if (padre.izquierda == nodoToBorrar) {
+            padre.izquierda = nodoToBorrar.izquierda;
+            nodoToBorrar.izquierda.padre = padre;
+        } else {
+            padre.derecha = nodoToBorrar.izquierda;
+            nodoToBorrar.izquierda.padre = padre;
+        }
+    }
+
+    // Caso 4: tiene ambos hijos
+    else {
+        // Buscamos el predecesor (máximo del subárbol izquierdo)
+        Nodo predecesor = buscarPredecesor(nodoToBorrar.izquierda, null);
+
+        // Guardamos el valor del predecesor
+        T valorPredecesor = predecesor.valor;
+
+        // Eliminamos el nodo del predecesor (que tiene como mucho un hijo izquierdo)
+        eliminar(predecesor.valor);
+
+        // Reemplazamos el valor en el nodo original
+        nodoToBorrar.valor = valorPredecesor;
+
+        // Importante: como hicimos eliminar recursivamente,
+        // no modificamos tamaño dos veces, así que lo restauramos:
+        tamaño += 1;
+    }
+
+    // Actualizamos mínimo y máximo si era necesario
+    if (maximo != null && maximo.valor.compareTo(elem) == 0) {
+        actualizarMaximos(puntero, null);
+    }
+    if (minimo != null && minimo.valor.compareTo(elem) == 0) {
+        actualizarMinimos(puntero, null);
+    }
+}
+
+
 
     @Override
     public String toString() {

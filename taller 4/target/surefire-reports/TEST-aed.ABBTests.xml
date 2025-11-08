@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="aed.ABBTests" time="0.137" tests="18" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\aleli\Downloads\maxi\AED\Algoritmos-y-estructuras-de-datos-1\taller 4\target\test-classes;C:\Users\aleli\Downloads\maxi\AED\Algoritmos-y-estructuras-de-datos-1\taller 4\target\classes;C:\Users\aleli\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\aleli\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\aleli\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\aleli\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\aleli\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\aleli\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Buenos_Aires"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="user.country" value="AR"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25\bin"/>
+    <property name="sun.java.command" value="C:\Users\aleli\AppData\Local\Temp\surefire9613880899958082021\surefirebooter-20251108125440168_3.jar C:\Users\aleli\AppData\Local\Temp\surefire9613880899958082021 2025-11-08T12-54-40_052-jvmRun1 surefire-20251108125440168_1tmp surefire_0-20251108125440168_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="test" value="aed.ABBTests"/>
+    <property name="surefire.test.class.path" value="C:\Users\aleli\Downloads\maxi\AED\Algoritmos-y-estructuras-de-datos-1\taller 4\target\test-classes;C:\Users\aleli\Downloads\maxi\AED\Algoritmos-y-estructuras-de-datos-1\taller 4\target\classes;C:\Users\aleli\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.9.2\junit-jupiter-engine-5.9.2.jar;C:\Users\aleli\.m2\repository\org\junit\platform\junit-platform-engine\1.9.2\junit-platform-engine-1.9.2.jar;C:\Users\aleli\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\aleli\.m2\repository\org\junit\platform\junit-platform-commons\1.9.2\junit-platform-commons-1.9.2.jar;C:\Users\aleli\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.9.2\junit-jupiter-api-5.9.2.jar;C:\Users\aleli\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\aleli"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-10-21"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-25"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\aleli\Downloads\maxi\AED\Algoritmos-y-estructuras-de-datos-1\taller 4"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\aleli\AppData\Local\Temp\surefire9613880899958082021\surefirebooter-20251108125440168_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.1+8-LTS-27"/>
+    <property name="user.name" value="aleli"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="C:\Users\aleli\.vscode\extensions\oracle.oracle-java-24.1.2\nbcode\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="localRepository" value="C:\Users\aleli\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\aleli\AppData\Local\Temp\"/>
+    <property name="java.version" value="25.0.1"/>
+    <property name="user.dir" value="C:\Users\aleli\Downloads\maxi\AED\Algoritmos-y-estructuras-de-datos-1\taller 4"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\aleli\bin;C:\Users\aleli\AppData\Local\Programs\Git\mingw64\bin;C:\Users\aleli\AppData\Local\Programs\Git\usr\local\bin;C:\Users\aleli\AppData\Local\Programs\Git\usr\bin;C:\Users\aleli\AppData\Local\Programs\Git\usr\bin;C:\Users\aleli\AppData\Local\Programs\Git\mingw64\bin;C:\Users\aleli\AppData\Local\Programs\Git\usr\bin;C:\Users\aleli\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\nodejs;C:\Users\aleli\AppData\Local\Microsoft\WindowsApps;C:\Users\aleli\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\aleli\AppData\Roaming\npm;C:\Users\aleli\AppData\Local\Programs\Git\cmd;C:\Users\aleli\AppData\Local\Programs\Git\usr\bin\vendor_perl;C:\Users\aleli\AppData\Local\Programs\Git\usr\bin\core_perl;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.0.1+8-LTS-27"/>
+    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="eliminar_raiz_con_hijo_izquierdo" classname="aed.ABBTests" time="0.06">
+    <system-out><![CDATA[2
+5
+]]></system-out>
+  </testcase>
+  <testcase name="conjunto_vacio_toString" classname="aed.ABBTests" time="0.003"/>
+  <testcase name="eliminar_elemento_con_un_descendiente" classname="aed.ABBTests" time="0.001">
+    <system-out><![CDATA[5
+7
+]]></system-out>
+  </testcase>
+  <testcase name="eliminar_elemento_con_dos_descendientes" classname="aed.ABBTests" time="0.002">
+    <system-out><![CDATA[4
+8
+]]></system-out>
+  </testcase>
+  <testcase name="eliminar_elemento_con_doble_descendencia" classname="aed.ABBTests" time="0.001">
+    <system-out><![CDATA[4
+25
+]]></system-out>
+  </testcase>
+  <testcase name="stress" classname="aed.ABBTests" time="0.012"/>
+  <testcase name="eliminar_raiz_cons_dos_hijos" classname="aed.ABBTests" time="0.001">
+    <system-out><![CDATA[4
+8
+]]></system-out>
+  </testcase>
+  <testcase name="eliminar_raiz_con_derecho" classname="aed.ABBTests" time="0.001">
+    <system-out><![CDATA[7
+9
+]]></system-out>
+  </testcase>
+  <testcase name="insertar_izquierda" classname="aed.ABBTests" time="0.001"/>
+  <testcase name="insertar_derecha" classname="aed.ABBTests" time="0"/>
+  <testcase name="nuevo_conjunto_vacio" classname="aed.ABBTests" time="0.001"/>
+  <testcase name="siguiente_inorder" classname="aed.ABBTests" time="0.001"/>
+  <testcase name="eliminar_elemento_con_sucesor_arriba" classname="aed.ABBTests" time="0.001">
+    <system-out><![CDATA[4
+25
+]]></system-out>
+  </testcase>
+  <testcase name="insertar_elemento_repetido" classname="aed.ABBTests" time="0.001"/>
+  <testcase name="insertar_cinco_nombres" classname="aed.ABBTests" time="0.002">
+    <system-out><![CDATA[La Pampa
+La Pampa
+Chubut
+La Pampa
+Chubut
+La Pampa
+Catamarca
+La Pampa
+Catamarca
+La Pampa
+]]></system-out>
+  </testcase>
+  <testcase name="insertar_un_elemento" classname="aed.ABBTests" time="0.002"/>
+  <testcase name="conjunto_de_un_elemento_toString" classname="aed.ABBTests" time="0.001"/>
+  <testcase name="conjunto_de_muchos_numeros_toString" classname="aed.ABBTests" time="0.001"/>
+</testsuite>
