@@ -13,7 +13,7 @@ public class ListaEnlazada<T> {
         // que esto sea publico o privado no cambia en nada, ayq ue la clase de por si
         // es privada => no permite que se use afuera de ListaEnlazada
         private Nodo(T v) {
-            this.valor = v; // aca le llega el nodo anterior
+            this.valor = v;
             this.siguiente = null;
             this.anterior = null;
         }
@@ -29,7 +29,6 @@ public class ListaEnlazada<T> {
         return this.size;
     }
 
-    // ahora esto va a recibir el nodo
     public void agregarAdelante(T elem) {
         Nodo nuevoNodo = new Nodo(elem);
         // tengo que configurar el nodo manualmente, ya que el contructor no lo hace
@@ -37,36 +36,37 @@ public class ListaEnlazada<T> {
             this.primero.anterior = nuevoNodo; // le cargo quen va a ser su anterior
             nuevoNodo.siguiente = this.primero; // le cargo quen va a ser su siguiente
         } else {
-     
+            nuevoNodo.siguiente = null; // le digo que no hay ningun otro elemento, ya que si no hay primero no hay nada
+        }
 
-    
         // esto siempre tiene que pasar
         this.primero = nuevoNodo;
 
         // cubro el caso de que no existiera el ultimo
-        if (ultimo == null) { 
-               this.ultimo = nuevoNodo; // esto es una excepcion ya que si no lo tenemos lo agrego
+        if (ultimo == null) {
+            this.ultimo = nuevoNodo; // esto es una excepcion ya que si no lo tenemos lo agrego
         }
 
-            / le aumento la longitud:
-        t
+        // le aumento la longitud:
+        this.size++;
+    }
 
-        
-            c void agregarAtras(T elem) {
+    public void agregarAtras(T elem) {
         Nodo nuevoNodo = new Nodo(elem); // creamos el nodo correspondiente
         // en caso de que no haya un primer nodo o el ultimo
-        if (primero == null ||
-               this.primero = nuevoNodo;
-         
+        if (primero == null || ultimo == null) {
+            this.primero = nuevoNodo;
+            this.ultimo = nuevoNodo;
 
+            // le agrego una longitud:
             this.size++;
-             else {
+        } else {
             Nodo actual = this.primero;
-     
+            while (actual.siguiente != null) {
+                actual = actual.siguiente; // podemos hacer esto ya que actual es un nodo y lo mismo com el siuginwete
+                                           // pq tabienn es un nodo, es decir le estoy diciendo que mire ese nodo ahora
+            }
 
-                                              // pq tabienn es un nodo, es decir
-               }
-        
             // le digo cual es su anterior
             nuevoNodo.anterior = actual;
 
