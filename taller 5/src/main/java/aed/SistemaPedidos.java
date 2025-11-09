@@ -15,15 +15,16 @@ public class SistemaPedidos {
         lista.agregarAtras(handle); // O(1)
     }
 
-    public Pedido proximoPedido() { // TOTAL: =(log n)
-        // quiero obtener el primer elemento
-        ABB<Pedido>.HandleABB handle = lista.obtener(0); // O(1)
+    public Pedido proximoPedido() { 
+        ABB<Pedido>.HandleABB handle = lista.obtener(0); 
+        Pedido p = handle.valor();
+        // ¿Qué imprime esto? Si es 30, el fallo está antes de 'return'.
+        System.out.println("ID a devolver: " + p.toString()); 
 
-        handle.eliminar(); // O(log n)
-        // quiero eliminar el primer elemento
-        lista.eliminar(0); // O(1)
+        handle.eliminar(); 
+        lista.eliminar(0); 
 
-        return handle.valor();
+        return p; // Devuelve la variable p para evitar llamadas dobles.
     }
 
     public Pedido pedidoMenorId() {
@@ -31,7 +32,36 @@ public class SistemaPedidos {
     }
 
     public String obtenerPedidosEnOrdenDeLlegada() {
-        return lista.toString();
+        String texto = "[";
+        
+        // 1. Usa el iterador de la lista de Handles
+        ListaEnlazada<ABB<Pedido>.HandleABB>.ListaIterador it = lista.iterador();
+        
+        // 2. Procesa el primer elemento
+        if (it.haySiguiente()) {
+            ABB<Pedido>.HandleABB handle = it.siguiente(); 
+            
+            // Obtener el Pedido del Handle (asumo que se llama valor())
+            Pedido pedido = handle.valor(); 
+            
+            // Agregar el ID del pedido (usando Pedido.toString() que devuelve el ID)
+            texto += pedido.toString(); 
+        }
+
+        // 3. Procesa el resto de los elementos, agregando ", " ANTES.
+        while (it.haySiguiente()) {
+            ABB<Pedido>.HandleABB handle = it.siguiente(); 
+            Pedido pedido = handle.valor();
+            
+            // Añade el separador ", " y luego el ID (vía Pedido.toString())
+            texto += ", ";
+            texto += pedido.toString();
+        }
+        
+        // 4. Cerrar el corchete
+        texto += "]";
+        
+        return texto;
     }
 
     public String obtenerPedidosOrdenadosPorId() {

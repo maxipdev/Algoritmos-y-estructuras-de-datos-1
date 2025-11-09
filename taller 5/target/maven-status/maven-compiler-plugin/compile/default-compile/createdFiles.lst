@@ -10,4 +10,5 @@ aed\Pedido.class
 aed\SistemaPedidos.class
 aed\ListaEnlazada$ListaIterador.class
 aed\ABB$Nodo.class
+aed\Main.class
 aed\Handle.class

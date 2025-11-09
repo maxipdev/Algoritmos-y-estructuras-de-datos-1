@@ -63,7 +63,7 @@ public class ABB<T extends Comparable<T>> {
         }
     }
 
-        private Nodo buscarNodo(Nodo nodoActual, T elemento) {
+    private Nodo buscarNodo(Nodo nodoActual, T elemento) {
         if (nodoActual.valor.compareTo(elemento) == 0) {
             return nodoActual;
         } else if (nodoActual.valor.compareTo(elemento) > 0) {
@@ -74,12 +74,10 @@ public class ABB<T extends Comparable<T>> {
     }
 
     public T minimo() {
-        actualizarMinimos(puntero, null);
         return this.minimo.valor;
     }
 
     public T maximo() {
-        actualizarMaximos(puntero, null);
         return this.maximo.valor;
     }
 
@@ -158,16 +156,9 @@ public class ABB<T extends Comparable<T>> {
         }
     }
 
-    public void eliminar(T elem) {
-        Nodo nodo = buscarNodo(puntero, elem);
-        if (nodo != null) eliminar(nodo);
-    }
-
     public void eliminar(Nodo nodoToBorrar) {
-        // sabemos q el elemento q se le pase con el nuevo borrar ya pertenece
-        // ya vamos a tener el nodo que queremos borarr
-
         Nodo padre = nodoToBorrar.padre;
+
         tamaño -= 1;
 
         // Caso 1: es una hoja (sin hijos)
@@ -211,46 +202,82 @@ public class ABB<T extends Comparable<T>> {
 
         // Caso 4: tiene ambos hijos
         else {
-            // Buscamos el predecesor (máximo del subárbol izquierdo)
             Nodo predecesor = buscarPredecesor(nodoToBorrar.izquierda, null);
 
-            // Guardamos el valor del predecesor
-            T valorPredecesor = predecesor.valor;
+            // Usamos la variable 'padre' ya declarada al principio del método
+            // Guardamos la rama derecha del nodo a borrar
+            Nodo hijoDerecho = nodoToBorrar.derecha;
 
-            // Eliminamos el nodo del predecesor (que tiene como mucho un hijo izquierdo)
-            eliminar(predecesor.valor);
+            // Si el predecesor no es hijo directo del nodo a borrar,
+            // hay que "extraerlo" de donde está y conectar su posible hijo izquierdo
+            if (predecesor.padre != nodoToBorrar) {
+                // El predecesor puede tener a lo sumo un hijo izquierdo
+                if (predecesor.padre.izquierda == predecesor) {
+                    predecesor.padre.izquierda = predecesor.izquierda;
+                } else {
+                    predecesor.padre.derecha = predecesor.izquierda;
+                }
+                if (predecesor.izquierda != null) {
+                    predecesor.izquierda.padre = predecesor.padre;
+                }
 
-            // Reemplazamos el valor en el nodo original
-            nodoToBorrar.valor = valorPredecesor;
+                // Ahora hacemos que el predecesor adopte la izquierda del nodo a borrar
+                predecesor.izquierda = nodoToBorrar.izquierda;
+                if (predecesor.izquierda != null) predecesor.izquierda.padre = predecesor;
+            }
 
-            // Importante: como hicimos eliminar recursivamente,
-            // no modificamos tamaño dos veces, así que lo restauramos:
-            tamaño += 1;
+            // En todos los casos, el predecesor debe adoptar la derecha del nodo a borrar
+            predecesor.derecha = hijoDerecho;
+            if (hijoDerecho != null) hijoDerecho.padre = predecesor;
+
+            // Recolocamos el predecesor en el lugar del nodo a borrar
+            if (padre == null) {
+                puntero = predecesor;
+                predecesor.padre = null;
+            } else if (padre.izquierda == nodoToBorrar) {
+                padre.izquierda = predecesor;
+                predecesor.padre = padre;
+            } else {
+                padre.derecha = predecesor;
+                predecesor.padre = padre;
+            }
+
+            // NOTA: no llamamos a eliminar(predecesor.valor) aquí porque ya reubicamos
+            // el nodo físico. Además, como estamos manipulando nodos directamente,
+            // asegurar que no modifiquemos tamaño dos veces ni perdamos referencias.
         }
 
-        // // Actualizamos mínimo y máximo si era necesario
+
+        // Actualizamos mínimo y máximo si era necesario
         if (maximo != null && maximo.valor.compareTo(nodoToBorrar.valor) == 0) {
             actualizarMaximos(puntero, null);
         }
         if (minimo != null && minimo.valor.compareTo(nodoToBorrar.valor) == 0) {
             actualizarMinimos(puntero, null);
         }
-    }
+}
+
+
+
 
     @Override
     public String toString() {
-        ABB_Iterador it = iterador();
-        String texto = "{";
+        ABB_Iterador it = iterador(); // Usa el iterador Inorden
+        String texto = "{";           // Abre con llave
         boolean esPrimero = true;
+        
         while (it.haySiguiente()) {
-            T valor = it.siguiente(); // SOLO una llamada
+            T valor = it.siguiente(); 
+            
             if (!esPrimero) {
-                texto += ",";
+                texto += ", "; // <--- CORRECCIÓN: Agregamos la coma Y el espacio
             }
-            texto += valor.toString();
+            
+            texto += valor.toString(); // Usa el Pedido.toString() (que devuelve el ID)
             esPrimero = false;
         }
-        texto += "}";
+        
+        texto += "}"; // Cierra con llave
 
         return texto;
     }
